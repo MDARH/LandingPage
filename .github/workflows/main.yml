@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.ftp_password }}
         protocol: ftp
         port: 21
-        server-dir: "myassetbd.com/"
+        server-dir: "myassetbd/"
         exclude: |
           **/.git*
           **/.git*/**
@@ -33,7 +33,7 @@ jobs:
         password: ${{ secrets.ftp_password }}
         protocol: ftp
         port: 21
-        server-dir: "rspm.services/"
+        server-dir: "rspm/"
         exclude: |
           **/.git*
           **/.git*/**
