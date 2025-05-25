@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('constructions', function (Blueprint $table) {
             $table->id();
+            $table->string('domain')->unique();
+            $table->string('logo_path')->nullable(); // path to uploaded logo
+            $table->text('content')->nullable(); // main content text
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('bg_color')->default('#ffffff');
+            $table->string('text_color')->default('#000000');
+            $table->boolean('has_countdown')->default(false);
+            $table->dateTime('countdown_date')->nullable();
+            $table->json('social_links')->nullable(); // Store all links as JSON
+            $table->string('platform'); // e.g., facebook, twitter, linkedin
+            $table->string('url'); // social link
+            $table->string('icon_class')->nullable(); // e.g., fa-brands fa-facebook
             $table->timestamps();
         });
     }

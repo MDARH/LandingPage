@@ -6,6 +6,15 @@ use App\Filament\Resources\ConstructionResource\Pages;
 use App\Filament\Resources\ConstructionResource\RelationManagers;
 use App\Models\Construction;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,22 +26,90 @@ class ConstructionResource extends Resource
 {
     protected static ?string $model = Construction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            Section::make('General Info')->schema([
+                Grid::make(2)->schema([
+                    TextInput::make('domain')
+                        ->label('Domain')
+                        ->required(),
+
+                    FileUpload::make('logo_path')
+                        ->label('Website Logo')
+                        ->image()
+                        ->directory('logos'),
+
+                    RichEditor::make('content')
+                        ->label('Page Content')
+                        ->columnSpanFull(),
+                ]),
+            ]),
+
+            Section::make('Appearance')->schema([
+                Grid::make(2)->schema([
+                    Select::make('bg_color')
+                        ->label('Background Color')
+                        ->options([
+                            'bg-white' => 'White',
+                            'bg-black' => 'Black',
+                            'bg-blue-600' => 'Blue',
+                            'bg-gray-900' => 'Dark Gray',
+                            'bg-gradient-to-r from-purple-500 to-pink-500' => 'Purple-Pink Gradient',
+                        ])
+                        ->required(),
+
+                    Select::make('text_color')
+                        ->label('Text Color')
+                        ->options([
+                            'text-black' => 'Black',
+                            'text-white' => 'White',
+                            'text-gray-700' => 'Gray',
+                            'text-blue-300' => 'Blue Light',
+                        ])
+                        ->required(),
+
+                    Toggle::make('has_countdown')
+                        ->label('Enable Countdown Timer'),
+                ]),
+            ]),
+
+            Section::make('Social Links')->schema([
+                Repeater::make('social_links')
+                    ->label('Add Social Media Links')
+                    ->schema([
+                        Select::make('platform')
+                            ->label('Platform')
+                            ->options([
+                                'facebook' => 'Facebook',
+                                'twitter' => 'Twitter',
+                                'linkedin' => 'LinkedIn',
+                                'youtube' => 'YouTube',
+                                'instagram' => 'Instagram',
+                            ])
+                            ->required(),
+
+                        TextInput::make('url')
+                            ->label('URL')
+                            ->url()
+                            ->required(),
+                    ])
+                    ->defaultItems(1)
+                    ->columnSpanFull(),
+            ]),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('domain'),
+                Tables\Columns\IconColumn::make('has_countdown')->boolean(),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])

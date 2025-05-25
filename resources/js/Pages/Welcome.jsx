@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 
 export default function Welcome() {
     return (
-        <div className="flex flex-col justify-center items-center p-4 min-h-screen bg-gray-100">
+        <div className="flex flex-col justify-center items-center p-4 min-h-screen bg-lime-100">
             <Head title="Under Construction" />
 
             {/* Logo Placeholder */}
