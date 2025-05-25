@@ -8,6 +8,7 @@ class Construction extends Model
 {
     protected $fillable = [
         'domain',
+        'title',
         'logo_path',
         'content',
         'bg_color',
@@ -18,6 +19,7 @@ class Construction extends Model
     ];
 
     protected $casts = [
+        'logo_path' => 'array',
         'social_links' => 'array',
         'has_countdown' => 'boolean',
         'countdown_date' => 'datetime',

@@ -2,7 +2,7 @@ import React from 'react';
 import { Head, usePage } from '@inertiajs/react';
 
 const Home = () => {
-    const { logo, content, text_color, social_links = [], has_countdown } = usePage().props;
+    const { title, logos = [], content, text_color, social_links = [], has_countdown } = usePage().props;
     const platformIcons = {
         facebook: <svg
         className="w-8 h-8 text-orange-600 transition-colors hover:text-orange-800"
@@ -21,15 +21,22 @@ const Home = () => {
             <Head title="Under Construction" />
         {/* Construction Header */}
         <h1 className="mb-8 text-5xl font-bold text-center text-orange-600 drop-shadow-lg md:text-7xl">
-        The Site is Under Construction
+        { title }
         </h1>
 
-        {/* Construction Image */}
-        <img
-        src={logo}
-        alt="Logo"
-        className="mb-8 w-52 max-w-md rounded-lg shadow-lg"
-        />
+            {/* Construction Image */}
+            <div className='flex gap-2'>
+                {logos.length > 0 && (
+                    logos.map((logo, index) => (
+                        <img
+                        key={index}
+                        src={`storage/${logo}`}
+                        alt="Logo"
+                        className="mb-8 max-h-52 shadow-lg"
+                        />
+                    ))
+                )}
+            </div>
 
         {/* Owner Info */}
         <div

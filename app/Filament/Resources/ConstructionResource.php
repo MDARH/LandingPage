@@ -38,10 +38,19 @@ class ConstructionResource extends Resource
                         ->dehydrated()
                         ->default(fn() => request()->getHost()),
 
+                    TextInput::make('title')
+                        ->label('Title')
+                        ->default('Under Construction'),
+
                     FileUpload::make('logo_path')
                         ->label('Website Logo')
                         ->image()
-                        ->directory('logos'),
+                        ->multiple()
+                        ->reorderable()
+                        ->panelLayout('grid')
+                        ->uploadingMessage('Uploading attachment...')
+                        ->directory('logos')
+                        ->columnSpanFull(),
 
                     RichEditor::make('content')
                         ->label('Page Content')

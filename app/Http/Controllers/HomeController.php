@@ -14,7 +14,8 @@ class HomeController extends Controller
         $site = Construction::where('domain', $domain)->first();
 
         return Inertia::render('Home', [
-            'logo' => $site->logo_path ? asset('storage/' . $site->logo_path) : null,
+            'title' => $site->title,
+            'logos' => $site->logo_path,
             'content' => $site->content,
             'bg_color' => $site->bg_color,
             'text_color' => $site->text_color,
