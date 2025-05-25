@@ -18,6 +18,7 @@ const Home = () => {
 
     return (
         <div className="flex flex-col justify-center items-center p-4 min-h-screen bg-yellow-100">
+            <Head title="Under Construction" />
         {/* Construction Header */}
         <h1 className="mb-8 text-5xl font-bold text-center text-orange-600 drop-shadow-lg md:text-7xl">
         The Site is Under Construction
