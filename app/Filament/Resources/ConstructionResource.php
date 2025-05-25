@@ -58,34 +58,6 @@ class ConstructionResource extends Resource
                 ]),
             ]),
 
-            Section::make('Appearance')->schema([
-                Grid::make(2)->schema([
-                    Select::make('bg_color')
-                        ->label('Background Color')
-                        ->options([
-                            'bg-white' => 'White',
-                            'bg-black' => 'Black',
-                            'bg-blue-600' => 'Blue',
-                            'bg-gray-900' => 'Dark Gray',
-                            'bg-gradient-to-r from-purple-500 to-pink-500' => 'Purple-Pink Gradient',
-                        ])
-                        ->required(),
-
-                    Select::make('text_color')
-                        ->label('Text Color')
-                        ->options([
-                            'text-black' => 'Black',
-                            'text-white' => 'White',
-                            'text-gray-700' => 'Gray',
-                            'text-blue-300' => 'Blue Light',
-                        ])
-                        ->required(),
-
-                    Toggle::make('has_countdown')
-                        ->label('Enable Countdown Timer'),
-                ]),
-            ]),
-
             Section::make('Social Links')->schema([
                 Repeater::make('social_links')
                     ->label('Add Social Media Links')
@@ -101,6 +73,9 @@ class ConstructionResource extends Resource
                             ])
                             ->required(),
 
+                        TextInput::make('title')
+                            ->label('Name')
+                            ->required(),
                         TextInput::make('url')
                             ->label('URL')
                             ->url()
@@ -108,6 +83,32 @@ class ConstructionResource extends Resource
                     ])
                     ->defaultItems(1)
                     ->columnSpanFull(),
+            ]),
+
+            Section::make('Appearance')->schema([
+                Grid::make(2)->schema([
+                    Select::make('bg_color')
+                        ->label('Background Color')
+                        ->options([
+                            'bg-white' => 'White',
+                            'bg-black' => 'Black',
+                            'bg-blue-600' => 'Blue',
+                            'bg-gray-900' => 'Dark Gray',
+                            'bg-gradient-to-r from-purple-500 to-pink-500' => 'Purple-Pink Gradient',
+                        ]),
+
+                    Select::make('text_color')
+                        ->label('Text Color')
+                        ->options([
+                            'text-black' => 'Black',
+                            'text-white' => 'White',
+                            'text-gray-700' => 'Gray',
+                            'text-blue-300' => 'Blue Light',
+                        ]),
+
+                    Toggle::make('has_countdown')
+                        ->label('Enable Countdown Timer'),
+                ]),
             ]),
         ]);
     }

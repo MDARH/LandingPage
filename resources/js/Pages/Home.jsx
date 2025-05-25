@@ -46,22 +46,27 @@ const Home = () => {
 
         {/* Social Links */}
         {social_links.length > 0 && (
-            <div className="flex space-x-6">
+        <div className="flex flex-wrap gap-6 justify-center mt-4">
             {social_links.map((link, index) => (
-                <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-600 transition-colors hover:text-orange-800"
-                >
-                {platformIcons[link.platform]}
-                </a>
-
+                <div key={index} className="flex flex-col items-center space-y-1">
+                    <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-2xl text-orange-600 hover:text-orange-800"
+                    >
+                        {platformIcons[link.platform]}
+                    </a>
+                    {link.title && (
+                        <span className="font-bold text-orange-600 text-md dark:text-orange-800">
+                            {link.title}
+                        </span>
+                    )}
+                </div>
             ))}
+        </div>
+)}
 
-            </div>
-        )}
 
 
         {/* Footer Note */}
