@@ -34,8 +34,9 @@ class ConstructionResource extends Resource
             Section::make('General Info')->schema([
                 Grid::make(2)->schema([
                     TextInput::make('domain')
-                        ->label('Domain')
-                        ->required(),
+                        ->disabled()
+                        ->dehydrated()
+                        ->default(fn() => request()->getHost()),
 
                     FileUpload::make('logo_path')
                         ->label('Website Logo')
