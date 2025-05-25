@@ -22,8 +22,8 @@ return new class extends Migration
             $table->boolean('has_countdown')->default(false);
             $table->dateTime('countdown_date')->nullable();
             $table->json('social_links')->nullable(); // Store all links as JSON
-            $table->string('platform'); // e.g., facebook, twitter, linkedin
-            $table->string('url'); // social link
+            $table->string('platform')->nullable(); // e.g., facebook, twitter, linkedin
+            $table->string('url')->nullable(); // social link
             $table->string('icon_class')->nullable(); // e.g., fa-brands fa-facebook
             $table->timestamps();
         });
